@@ -21,7 +21,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>Select Student </label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="student_id">
                                     <option>----Students----</option>
                                     @foreach ($students as $student)
                                         <option value="{{ $student->id }}">{{ $student->s_name }}</option>

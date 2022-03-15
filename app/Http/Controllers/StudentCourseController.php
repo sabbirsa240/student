@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\student_course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentCourseController extends Controller
 {
@@ -15,7 +17,14 @@ class StudentCourseController extends Controller
      */
     public function index()
     {
-       //
+        $courses = DB::table('student_courses')
+            ->join('students', 'students.id', '=', 'student_courses.student_id')
+            ->join('courses','courses.id','=','student_courses.course_id')
+            ->get();
+
+            // return $courses;
+
+       return view('student_course.index', compact('courses'));
     }
 
     /**
@@ -38,7 +47,18 @@ class StudentCourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        foreach($request->course_id as $key=>$courseid)
+        {
+            $student_course = new student_course();
+
+            $student_course->student_id  = $request->student_id;
+            $student_course->course_id   = $request->course_id [$key];
+
+            $student_course->save();
+        }
+
+            return $student_course;
     }
 
     /**

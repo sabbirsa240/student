@@ -12,23 +12,26 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header"><a href="{{route('studentCourses.create')}}" class="btn btn-success">create id</a></div>
+                    <div class="card-header"><a href="{{route('student-courses.create')}}" class="btn btn-success">create id</a></div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Course id</th>
-                                        <th>Student id</th>
+                                        <th>Student Name</th>
+                                        <th>Course Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>07</td>
-                                        <td>c-135</td>
-                                        <td>s-169</td>
-                                    </tr>
+                                    @foreach ($courses as $i=>$course)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $course->s_name }}</td>
+                                            <td>{{ $course->c_name }}</td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
